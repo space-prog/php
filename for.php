@@ -31,18 +31,12 @@
         <label for="koritsa">Koritsa</label>
         <input type="checkbox" name="dodatky" id="vanil" value="1">
         <label for="vanil">Vanil</label><br>    
-        <input type="checkbox" name="sweet" id="tort" value="70">
-        <label for="tort">Тортик</label>
-        <input type="checkbox" name="sweet" id="sweets" value="38">
-        <label for="sweets">Цукерки</label>
-        <input type="checkbox" name="sweet" id="croisant" value="40">
-        <label for="croisant">Круасан</label><br>
         <input type="radio" name="time" id="time1" value="35" required>
         <label for="time1">Легкий</label>
         <input type="radio" name="time" id="time2" value="43" required>
         <label for="time2">Середній</label>
         <input type="radio" name="time" id="time3" value="54" required>
-        <label for="time3">Міцний</label><br>
+        <label for="time3">Міцний</label>
         <button type="submit">Налляти</button>
     </form>
     <?php
@@ -54,41 +48,28 @@
             $honey = $_POST["honey"];
             $tea = $_POST["tea"];
             $prise = 0;
+            $dodatky = $_POST["dodatky"];
 
             if($tea==2) {
-                $prise+=2;
+                $prise=2;
             } else if($tea==3) {
-                $prise+=3;
+                $prise=3;
             } else if($tea==4) {
-                $prise+=4;
+                $prise=4;
             } else {
+                $prise=6;
+            }
+
+            if($dodatky==4) {
+                $prise+=4;
+            } else if($dodatky==3) {
+                $prise+=3;
+            } else if($dodatky==6) {
                 $prise+=6;
-            }
-
-            if(isset($_POST["dodatky"])) {
-                $dodatky = $_POST["dodatky"];
-                if($dodatky==4) {
-                    $prise+=4;
-                } else if($dodatky==3) {
-                    $prise+=3;
-                } else if($dodatky==6) {
-                    $prise+=6;
-                } else if($dodatky==2) {
-                    $prise+=2;
-                } else {
-                    $prise+=1;
-                }
-            }
-
-            if(isset($_POST["sweet"])) {
-                $sweet = $_POST["sweet"];
-                if($sweet==70) {
-                    $prise+=70;
-                } else if($sweet==38) {
-                    $prise+=38;
-                } else {
-                    $prise+=40;
-                }
+            } else if($dodatky==2) {
+                $prise+=2;
+            } else {
+                $prise+=1;
             }
 
             for($water; $water>0; $water-=$cup) {
